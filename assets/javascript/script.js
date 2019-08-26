@@ -9,7 +9,7 @@ let topics = ['Formula 1', 'Pearl Jam', 'Guitars', 'Golf', 'Star Wars', 'Monty P
 function renderButtons(){
     $('#button-section').empty();
     for(let i=0; i < topics.length; i++){
-        $('#button-section').append("<button  class='btn btn-primary topic-button' data-topic='" + topics[i] + "'>" + topics[i] + "</button>");
+        $('#button-section').append("<button  class='btn btn-primary btn-primary-spacing topic-button' data-topic='" + topics[i] + "'>" + topics[i] + "</button>");
     }
 }
 
@@ -29,6 +29,7 @@ function addNewButton(event){
 //     console.logt('test');
 // })
 
+//Function to display the Gifs - pull them from Giphy API and then loop through to keep appending
 function displayGifs(event){
     event.preventDefault();
     $('#giphy-section').empty();
@@ -44,7 +45,7 @@ function displayGifs(event){
             let results = response.data;
 
             for(let i=0; i<results.length; i++){
-                let gifDiv = $("<div>");
+                let gifDiv = $("<div class='giphyDiv'>");
 
                 let rating = results[i].rating;
 
@@ -59,10 +60,9 @@ function displayGifs(event){
                     'class': 'gif',
                 })
                 
-                gifDiv.prepend(p);
-                gifDiv.prepend(topicImage);
-
-                $('#giphy-section').prepend(gifDiv);
+                gifDiv.append(topicImage);
+                gifDiv.append(p);
+                $('#giphy-section').append(gifDiv);
             }
         })
 }
