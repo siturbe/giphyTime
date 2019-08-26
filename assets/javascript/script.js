@@ -1,3 +1,5 @@
+let results = {}
+
 
 const giphyAPIkey = '4N9bCuDdA4AZFIQ710JoAC8rfVVNiAO3';
 
@@ -7,7 +9,7 @@ let topics = ['Formula 1', 'Pearl Jam', 'Guitars', 'Golf', 'Star Wars', 'Monty P
 function renderButtons(){
     $('#button-section').empty();
     for(let i=0; i < topics.length; i++){
-        $('#button-section').append("<button class='btn btn-primary topic-button' data-topic='" + topics[i] + "'>" + topics[i] + "</button>");
+        $('#button-section').append("<button  class='btn btn-primary topic-button' data-topic='" + topics[i] + "'>" + topics[i] + "</button>");
     }
 }
 
@@ -48,17 +50,35 @@ function displayGifs(event){
 
                 let p = $("<p>").text("Rating: " + rating);
 
-                let topicImage = $('<img class="gif">');
-                topicImage.attr('src', results[i].images.fixed_height.url);
-
+                let topicImage = $('<img>');
+                topicImage.attr({
+                    'src': results[i].images.fixed_height_still.url,
+                    'data-still': results[i].images.fixed_height_still.url,
+                    'data-animate': results[i].images.fixed_height.url,
+                    'data-state': 'still',
+                    'class': 'gif',
+                })
+                
                 gifDiv.prepend(p);
                 gifDiv.prepend(topicImage);
 
                 $('#giphy-section').prepend(gifDiv);
             }
         })
-    
 }
 
 
+function animate(){
+    let state = $(this).attr('data-state');
 
+
+    if(state === 'still'){
+        let newSource = $(this).attr("data-animate");
+        $(this).attr('src', newSource);
+        $(this).attr('data-state', 'animate');
+    } else {
+        let newSource =$(this).attr("data-still");
+        $(this).attr('src', newSource);
+        $(this).attr('data-state', 'still');
+    }
+}
