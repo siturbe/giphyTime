@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset = 'utf-g'>
+        <title>Gify Time!</title>
+        <link rel='stylesheet' href="assets/css/reset.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    </head>
+
+    <body>
+        <div id='header' class='container-fluid col-md-12 jumbotron'>It's GIPHY Time!!!</div>
+        <div id='below-header' class='container-fluid col-md-10 offset-md-1'>
+            <div id='row1' class='row'>
+                <div id='button-section' class='container-fluid col-md-12'></div>
+            </div>
+            <br>
+            <br>
+            <div id='row2' class='row'>    
+                <div id='giphy-section'  class='col col-md-9'></div>
+                <div id='input-sction'   class='col col-md-3'>
+                        <form id="search-form">
+                            <label for="search-input">Enter a GIPHY theme:</label>
+                            <input type="text" id="search-input"><br>
+                            <input id="find-giphy" type="submit" value="Submit">
+                        </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/javascript/script.js"></script>
+        <script>
+            renderButtons();
+            $('.topic-button').on('click', displayGifs);
+            $("#find-giphy").on('click', addNewButton);
+            $(document).on("click",".topic-button", displayGifs);
+        </script>
+
+    </body>
+
+</html>
